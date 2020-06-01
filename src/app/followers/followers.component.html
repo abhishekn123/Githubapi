@@ -1,0 +1,28 @@
+<div class="card mb-3 mt-3 h-50">
+  <div class="row no-gutters">
+    <div class="col-sm-2">
+      <img [src]="image_url" class="card-img" alt="..." style="height: 100%;" />
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <a
+          class="card-title"
+          [href]="'https://github.com/' + username"
+          style="cursor: pointer;"
+          >{{ username }}</a
+        >
+        <p class="card-text mt-1" style="font-size: 15px; margin-left: 5px;">
+          {{ bio != null ? bio : "" }}
+        </p>
+      </div>
+      <div
+        class="text-right"
+        style="position: relative; bottom: 70px; margin-right: 10px;"
+      >
+        <button class="btn btn-light border">
+          {{ type }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

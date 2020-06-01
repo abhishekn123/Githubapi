@@ -1,0 +1,178 @@
+<ul class="nav nav-pills mt-2" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link active"
+      id="overview-tab"
+      data-toggle="tab"
+      href="#overview"
+      role="tab"
+      aria-controls="overview"
+      aria-selected="true"
+      >Overview</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="repositories-tab"
+      data-toggle="tab"
+      href="#repositories"
+      role="tab"
+      aria-controls="repositories"
+      aria-selected="false"
+      >Repositories</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="project-tab"
+      data-toggle="tab"
+      href="#project"
+      role="tab"
+      aria-controls="project"
+      aria-selected="false"
+      >Projects</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="package-tab"
+      data-toggle="tab"
+      href="#package"
+      role="tab"
+      aria-controls="package"
+      aria-selected="false"
+      >Package</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="stars-tab"
+      data-toggle="tab"
+      href="#stars"
+      role="tab"
+      aria-controls="stars"
+      aria-selected="false"
+      >Stars</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="followers-tab"
+      data-toggle="tab"
+      href="#followers"
+      role="tab"
+      aria-controls="followers"
+      aria-selected="false"
+      (click)="getfollowers()"
+      >Followers</a
+    >
+  </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="following-tab"
+      data-toggle="tab"
+      href="#following"
+      role="tab"
+      aria-controls="following"
+      aria-selected="false"
+      (click)="getfollowing()"
+      >Following</a
+    >
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div
+    class="tab-pane fade show active"
+    id="overview"
+    role="tabpanel"
+    aria-labelledby="overview-tab"
+  >
+    <div>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let i of this.service.repos">
+          <app-overview-card
+            [reponame]="i.name"
+            [repourl]="i.owner.html_url"
+          ></app-overview-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="repositories"
+    role="tabpanel"
+    aria-labelledby="repositories"
+  >
+    <div *ngFor="let i of this.service.repos">
+      <app-overview-card
+        [reponame]="i.name"
+        [repourl]="i.owner.html_url"
+      ></app-overview-card>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="project"
+    role="tabpanel"
+    aria-labelledby="project-tab"
+  >
+    <app-overview-card></app-overview-card>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="package"
+    role="tabpanel"
+    aria-labelledby="package-tab"
+  >
+    Package
+  </div>
+  <div
+    class="tab-pane fade"
+    id="stars"
+    role="tabpanel"
+    aria-labelledby="stars-tab"
+  >
+    Stars
+  </div>
+  <div
+    class="tab-pane fade"
+    id="followers"
+    role="tabpanel"
+    aria-labelledby="followers-tab"
+  >
+    <div *ngFor="let i of this.service.followers">
+      <app-followers
+        type="Follow"
+        [image_url]="i.avatar_url"
+        [profile_url]="i.url"
+        [username]="i.login"
+        [location]="i.location"
+        [bio]="i.bio"
+      ></app-followers>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="following"
+    role="tabpanel"
+    aria-labelledby="following-tab"
+  >
+    <div *ngFor="let i of this.service.following">
+      <app-followers
+        type="Unfollow"
+        [image_url]="i.avatar_url"
+        [profile_url]="i.url"
+        [username]="i.login"
+        [location]="i.location"
+        [bio]="i.bio"
+      ></app-followers>
+    </div>
+  </div>
+</div>
